@@ -23,6 +23,4 @@ We welcome contributions to this project! If you'd like to help improve it, plea
 
 - **Aryan Absalan**
 
-## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
