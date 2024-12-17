@@ -1,0 +1,46 @@
+{% extends "calculator/layout.html" %}
+
+
+{% block body %}
+<link href='https://fonts.googleapis.com/css?family=Exo 2' rel='stylesheet'>
+
+<div class="about-us">
+    <div class="text-box" style="width: 40em; height: 25em; margin-top: 14em; margin-left: 7em;">
+        <p style="font-size: 4em; font-family: 'Exo 2', sans-serif; color: antiquewhite; margin-bottom: 0.3em;">About Us</p>
+        <hr>
+        <p id="about" style="color: antiquewhite; margin-top: 1em; font-size: 20px; font-family: 'Exo 2', sans-serif; line-height: 1.6; height: 20em;"></p>
+
+        <p style="color: antiquewhite; margin-top: 1em; font-size: 20px; font-family: 'Exo 2', sans-serif; line-height: 1.6;">
+            <br>
+            <br>
+            
+            Aryan Absalan * 2024            
+        </p>
+    </div>
+</div>
+
+<script>
+
+    const text1 = `  The MoonRates platform, built on the Kristall project, is designed to provide various
+                 services to users in the cryptocurrency space. Specifically the platform offers real-time cryptocurrency prices,
+                 up-to-date market news, cryptocurrency price converter and various services for accessing and analyzing crypto market data.
+                 Currently, the Kristall projects technical team is the sole developer behind this platform
+                 and Moonrates is still in its early stages. With the use of Kristall as its underlying infrastructure,
+                 the platform has the potential to expand and add advanced tools for data analysis and market trend prediction in the future.`;
+
+
+    const element = document.getElementById("about");
+    let index = 0;
+
+    function typeWriter() {
+      if (index < text1.length) {
+        element.innerHTML += text1.charAt(index);
+        index++;
+        setTimeout(typeWriter, 5); 
+      }
+    }
+
+    typeWriter(); 
+
+</script>
+{% endblock %}

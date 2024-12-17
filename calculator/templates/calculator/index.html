@@ -1,0 +1,314 @@
+{% extends "calculator/layout.html" %}
+    
+{% load cache %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="side-table left-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>BTC</td>
+                        {% cache 300 "btc_price" %}
+                            <td><p class="BTC" id="BTC">Loading...</p></td>
+                        {% endcache %}
+                    </tr>
+                    <tr>
+                        <td>ETH</td>
+                        <td><p class="ETH" id="ETH">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>TRX</td>
+                        <td><p class="TRX" id="TRX">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>BCH</td>
+                        <td><p class="BCH" id="BCH">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>MATIC</td>
+                        <td><p class="MATIC" id="MATIC">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>AVAX</td>
+                        <td><p class="AVAX" id="AVAX">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>LINK</td>
+                        <td><p class="LINK" id="LINK">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>EGLD</td>
+                        <td><p class="EGLD" id="EGLD">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>FTM</td>
+                        <td><p class="FTM" id="FTM">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>ICP</td>
+                        <td><p class="ICP" id="ICP">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>AAVE</td>
+                        <td><p class="AAVE" id="AAVE">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>MKR</td>
+                        <td><p class="MKR" id="MKR">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>UNI</td>
+                        <td><p class="UNI" id="UNI">Loading...</p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="center-content">
+            <div class="converter-container">
+                <h2 style="text-align: center; color: aquamarine; margin-top: 2px; font-family: 'Orbitron', sans-serif;">CRYPTO CONVERTER</h2>
+                <hr>
+                <div class="inputs">
+                <label for="from-currency">FROM</label>
+                <input type="text" id="from-currency" name="from-currency" placeholder="BTC" required>
+                <input type="number" id="from-amount" name="from-amount" placeholder="Amount" required>
+                
+                <label for="to-currency">TO</label>
+                <input type="text" id="to-currency" name="to-currency" placeholder="ETH"required>
+                
+                <button class="convert-btn" id="convert-button" onclick="convertCurrency()">CONVERT</button>
+                </div>
+                <div class="result" id="result" style="color: aquamarine;">-</div>
+            </div>
+
+            <div class="market-data-container">
+                <div class="market-cap" >
+                    <h3 style="margin-bottom: 0.4em;">Marketcap</h3>
+                    <hr class="market-hr">
+                    <p style="margin-top: 1em; margin-bottom: 1em;">₿: {{ bitcoin_market_cap }}</p>
+                    <p style="margin-top: 1em; margin-bottom: 1em;">⟠: {{ ethereum_market_cap }}</p>
+
+
+                </div>
+                <div class="volume" >
+                    <h3 style="margin-bottom: 0.4em;">24H Volume</h3>
+                    <hr class="market-hr">
+                    <p style="margin-top: 1em; margin-bottom: 1em;">₿: {{ bitcoin_24h_volume }}</p>
+                    <p style="margin-top: 1em; margin-bottom: 1em;">⟠: {{ ethereum_24h_volume }}</p>
+
+                </div>
+                <div class="dominance" >
+                    <h3 style="margin-bottom: 0.4em;">Dominance</h3>
+                    <hr class="market-hr">
+                    <p style="margin-top: 1em; margin-bottom: 1em;">₿: {{ btc_dom|floatformat:2 }}%</p>
+                    <p style="margin-top: 1em; margin-bottom: 1em;">⟠: {{ eth_dom|floatformat:2 }}%</p>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="side-table right-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DOGE</td>
+                        <td><p class="DOGE" id="DOGE">Loading...</p></td>
+                    </tr>
+
+                    <tr>
+                        <td>XRP</td>
+                        <td><p class="XRP" id="XRP">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>LTC</td>
+                        <td><p class="LTC" id="LTC">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>SOL</td>
+                        <td><p class="SOL" id="SOL">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>DOT</td>
+                        <td><p class="DOT" id="DOT">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>BNB</td>
+                        <td><p class="BNB" id="BNB">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>DASH</td>
+                        <td><p class="DASH" id="DASH">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>XTZ</td>
+                        <td><p class="XTZ" id="XTZ">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>ALGO</td>
+                        <td><p class="ALGO" id="ALGO">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>FIL</td>
+                        <td><p class="FIL" id="FIL">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>ATOM</td>
+                        <td><p class="ATOM" id="ATOM">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>XLM</td>
+                        <td><p class="XLM" id="XLM">Loading...</p></td>
+                    </tr>
+                    <tr>
+                        <td>APT</td>
+                        <td><p class="APT" id="APT">Loading...</p></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script>
+
+
+function convertCurrency() {
+  const fromCurrency = document.getElementById('from-currency').value;
+  const fromAmount = parseFloat(document.getElementById('from-amount').value);
+  const toCurrency = document.getElementById('to-currency').value;
+
+
+  if (!fromCurrency || !toCurrency || isNaN(fromAmount) || fromAmount <= 0) {
+    document.getElementById('result').textContent = "Please enter valid values!";
+    return;
+  }
+
+  document.getElementById('result').textContent = "Calculating...";
+
+
+  const convertButton = document.getElementById('convert-button');
+  convertButton.disabled = true;
+
+
+  const data = {
+    from_currency: fromCurrency,
+    from_amount: fromAmount,
+    to_currency: toCurrency
+  };
+
+  console.log('Sending data:', data);  
+
+
+  fetch('/convert-currency/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRFToken': getCookie('csrftoken')  
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    console.log('Response status:', response.status); 
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(result => {
+    console.log('Conversion result:', result);  
+
+    document.getElementById('result').textContent = `${result.from_amount} ${result.from_currency} = ${result.converted_amount} ${result.to_currency}`;
+  })
+  .catch(error => {
+    console.error('Error:', error);  
+    document.getElementById('result').textContent = `Error: ${error.message}`;
+  })
+  .finally(() => {
+
+    convertButton.disabled = false;
+  });
+}
+
+
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+
+
+function fetchPrice(currency) {
+        fetch(`/get-price/${currency}/`)
+            .then(response => response.json())
+            .then(data => {
+
+                const cacheStatus = data.cache_status;
+                const expirationTime = data.cache_expiration ? new Date(data.cache_expiration) : null;
+
+
+                const priceElement = document.getElementById(currency);
+                
+
+                if (cacheStatus === "fresh") {
+                    priceElement.innerText = `$${data.price.toFixed(2)}`;
+                }
+                
+
+                else if (cacheStatus === "expired") {
+                    priceElement.innerText = `$${data.price.toFixed(2)}`;
+                }
+
+
+                if (expirationTime) {
+                    console.log("Cache expires at: ", expirationTime);
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching price:', error);
+            });
+    }
+
+
+    function fetchAllPrices() {
+        const currencies = ["BTC", "ETH", "SOL", "XRP", "DOGE", "LTC", "DOT", "BNB", "TRX", "BCH", "MATIC", "AVAX", "LINK", "XLM", "ATOM", "FIL", "ALGO", "VET", "XTZ", "EGLD", "FTM", "ICP", "AAVE", "MKR", "UNI", "APT", "DASH"];
+        currencies.forEach(currency => fetchPrice(currency));
+    }
+
+    setInterval(fetchAllPrices, 100000);
+
+
+    fetchAllPrices();
+    
+    </script>
+      
+{% endblock %}

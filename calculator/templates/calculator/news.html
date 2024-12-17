@@ -1,0 +1,48 @@
+{% extends "calculator/layout.html" %}
+
+
+{% block body %}
+
+<div class="content-wrapper">
+    <div class="news-div">
+        <ol role="list" class="news-ol">
+            {% for item in news %}
+                <li class="news-li">
+                    <h3 class="news-h3"><a href="{{ item.link }}" target="_blank" style="text-decoration: none;">{{ item.title }}</a></h3>
+                    <p>{{ item.description }}</p>
+                    <hr style="height:1px;border-width:0;color:gray;background-color:gray; margin-top: .5em; margin-bottom: .5em;">
+                    <h5 style="display: inline">{{ item.date }}</h5>
+                    <h5 style="display: inline; margin-left: 45em; ">{{ item.website }}</h5>
+                </li>
+            {% endfor %}
+        </ol>
+    </div>
+
+
+    <div class="sidebar">
+        {% for video in videos %}
+        <iframe width="400" height="225"
+            style="border-radius: .5em; margin-bottom: 2em;"
+            src="{{ video.video_url }}?autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&fs=0&loop=1" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+        {% endfor %}
+
+        {% for ad in ads %}
+        <div class="ad-section">
+            <a href="{{ ad.ref_url }}" target="_blank">
+                <img style="height: 14em; width: 28.8em; border-radius: .5em; margin-bottom: 2em;" src="{{ ad.ad_url }}" alt="Ad Banner" class="ad-banner">
+            </a>
+        </div>
+        {% endfor %}
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}
